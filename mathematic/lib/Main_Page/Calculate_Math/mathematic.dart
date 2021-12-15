@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/สมการกำลังสองสมบูรณ์.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/สมการสองตัวแปร.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/สมการตัวแปรเดียว.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/Parabola.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/Optimization.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/Linear.dart';
 import 'package:mathematic/Main_Page/main_Page.dart';
 
 class Mathematic extends StatefulWidget {
