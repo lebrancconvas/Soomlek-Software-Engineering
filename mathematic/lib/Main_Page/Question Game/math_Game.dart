@@ -1,7 +1,16 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mathematic/Main_Page/Question Game/Question.dart';
 import 'package:mathematic/Main_Page/Question%20Game/Main_Math_Game.dart';
+import 'package:mathematic/Main_Page/Question%20Game/Timers.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+var stopwatch = Stopwatch();
+var display = '00:00:00';
+Timer? timer;
+int timePoint = 0;
+var second = '00';
 
 class Math_Game extends StatefulWidget {
   const Math_Game({Key? key}) : super(key: key);
@@ -16,6 +25,16 @@ class _Math_GameState extends State<Math_Game> {
 
   List<Question> quesList = Question.questionList;
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   void showAlert() {
     Alert(
       style: AlertStyle(
@@ -29,7 +48,8 @@ class _Math_GameState extends State<Math_Game> {
       ),
       context: context,
       title: "Congratulations!",
-      desc: "You got $score out of ${quesList.length}",
+      desc:
+          "Time : $display second \n You got $score point out of ${quesList.length} Tests",
       buttons: [
         DialogButton(
           width: 150,
@@ -53,12 +73,32 @@ class _Math_GameState extends State<Math_Game> {
   }
 
   void buttonHandling(String answer) {
-    if (answer == quesList[number].answer) score += 1;
+    if (answer == quesList[number].answer) {
+      if (int.parse(second) <= 10)
+        timePoint += 10;
+      else if (int.parse(second) <= 12)
+        timePoint += 8;
+      else if (int.parse(second) <= 15)
+        timePoint += 6;
+      else if (int.parse(second) <= 19)
+        timePoint += 4;
+      else if (int.parse(second) <= 25)
+        timePoint += 2;
+      else if (int.parse(second) > 25) timePoint += 0;
 
-    if (number + 1 >= quesList.length)
+      score += 4;
+    }
+
+    if (number + 1 >= quesList.length) {
+      stopwatch.stop();
+      display = stopwatch.elapsed.inSeconds.toString();
+      stopwatch.reset();
+      score += timePoint;
       showAlert();
-    else
+    } else
       setState(() => number += 1);
+
+    second = '00';
   }
 
   Widget answerBotton(String choice, String answer) {
@@ -86,7 +126,27 @@ class _Math_GameState extends State<Math_Game> {
         ),
       ),
       child: OutlinedButton(
-          onPressed: () => buttonHandling(answer),
+          onPressed: () {
+            stopwatch.start();
+
+            timer = Timer.periodic(Duration(microseconds: 88), (_) {
+              setState(() {
+                var m = stopwatch.elapsed.inMinutes.toString().padLeft(2, '0');
+                var s = stopwatch.elapsed.inSeconds
+                    .remainder(60)
+                    .toString()
+                    .padLeft(2, '0');
+                var ms = stopwatch.elapsed.inMilliseconds
+                    .remainder(1000)
+                    .toString()
+                    .padLeft(2, '0');
+                second = stopwatch.elapsed.inSeconds.toString().padLeft(2, '0');
+                display = m + ' : ' + s + ' : ' + ms;
+              });
+            });
+
+            buttonHandling(answer);
+          },
           child: ListTile(
             leading: CircleAvatar(
               backgroundColor: Colors.orange,
@@ -128,7 +188,7 @@ class _Math_GameState extends State<Math_Game> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Question : ${number + 1} / ${quesList.length}",
+                  "Question : ${number + 1} / ${quesList.length}         $display ",
                   style: TextStyle(
                     color: Colors.orange,
                     fontSize: 23,

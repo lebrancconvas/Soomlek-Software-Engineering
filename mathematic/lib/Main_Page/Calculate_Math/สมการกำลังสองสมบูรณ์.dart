@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/Optimization.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/Linear.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/สมการสองตัวแปร.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/สมการตัวแปรเดียว.dart';
 import 'package:mathematic/Main_Page/main_Page.dart';
 import 'dart:math' as math;
 
@@ -68,8 +68,8 @@ class _ParabolaState extends State<Parabola> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
+                        key: globalA,
                         child: TextFormField(
-                          key: globalA,
                           controller: a,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(hintText: ''),
@@ -97,8 +97,8 @@ class _ParabolaState extends State<Parabola> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
-                        child: TextFormField(
                           key: globalB,
+                        child: TextFormField(
                           controller: b,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(hintText: ''),
@@ -124,8 +124,8 @@ class _ParabolaState extends State<Parabola> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
+                        key: globalC,
                         child: TextFormField(
-                          key: globalC,
                           controller: c,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(hintText: ''),

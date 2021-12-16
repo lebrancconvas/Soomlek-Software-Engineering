@@ -5,6 +5,8 @@ class MainGame extends StatelessWidget {
   const MainGame({Key? key}) : super(key: key);
 
   @override
+  void setState() {}
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green[50],

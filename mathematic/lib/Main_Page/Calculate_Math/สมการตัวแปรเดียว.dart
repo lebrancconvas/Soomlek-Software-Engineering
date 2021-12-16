@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/Parabola.dart';
-import 'package:mathematic/Main_Page/Calculate_Math/Optimization.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/สมการกำลังสองสมบูรณ์.dart';
+import 'package:mathematic/Main_Page/Calculate_Math/สมการสองตัวแปร.dart';
 import 'package:mathematic/Main_Page/main_Page.dart';
 
 class Linear extends StatefulWidget {
@@ -109,8 +109,8 @@ class _LinearState extends State<Linear> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
+                        key: globalA,
                         child: TextFormField(
-                          key: globalA,
                           controller: a,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(hintText: ''),
@@ -138,8 +138,8 @@ class _LinearState extends State<Linear> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
+                        key: globalB,
                         child: TextFormField(
-                          key: globalB,
                           controller: b,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(hintText: ''),
@@ -165,8 +165,8 @@ class _LinearState extends State<Linear> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Form(
+                        key: globalC,
                         child: TextFormField(
-                          key: globalC,
                           controller: c,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration.collapsed(hintText: ''),
